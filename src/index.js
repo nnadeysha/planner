@@ -1,7 +1,13 @@
 import getTaskData from "./service/TaskData";
-import getUserData from "./service/UserData";
-const app = document.querySelector("#root");
-const user = app.appendChild(document.createElement('ul'))
+import { getUserData } from "./service/UserData";
+import "./style/style.css";
+import { currentWeek, initButtons } from "./service/dateData";
+const app = document.querySelector(".planner");
+const users = document.getElementById("users");
 
+getUserData(users);
 
-getUserData(user.classList.add('users__list'));
+initButtons();
+
+currentWeek(25);
+//getTaskData(app);

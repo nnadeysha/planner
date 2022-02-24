@@ -1,21 +1,25 @@
-const API_USERS = `https://varankin_dev.elma365.ru/api/extensions/2a38760e-083a-4dd0-aebc-78b570bfd3c7/script/users`;
-
-const getUserData = async (app) => {
-    let response = await fetch(
-        API_USERS
-    );
-    const content = await response.json();
-    let key;
-  
-    for (key in content) {
-      console.log(content[key]);
-  
-      app.innerHTML += `
-      <li class="task__element">
-                  <h4>${content[key].surname} ${content[key].firstName}</h4>
-                  
-              </li>
-      `;
+import { API_USERS } from "../constants/const";
+let usersLength;
+export async function getUserData  (users) {
+    try{
+        let response = await fetch(API_USERS);
+        const content = await response.json();
+       
+       
+        content.map((user) => {
+          users.innerHTML += `
+              <div class="task__element">
+                          <h4 data-user-id= ${user.id}>${user.surname} ${user.firstName}</h4>
+                          
+                      </div>
+              `;
+        });
+        
+    } catch (e){
+        console.error(e)
     }
-  };
-  export default getUserData;
+  
+};
+
+
+
