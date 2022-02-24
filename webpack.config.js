@@ -33,6 +33,9 @@ const config = {
       {
         test: /\.(js|jsx)$/i,
         loader: "babel-loader",
+        options: {
+          plugins: ['@babel/plugin-syntax-top-level-await'],
+        }
       },
       {
         test: /\.css$/i,
@@ -60,8 +63,10 @@ module.exports = () => {
     config.plugins.push(new MiniCssExtractPlugin());
 
     config.plugins.push(new WorkboxWebpackPlugin.GenerateSW());
+    
   } else {
     config.mode = "development";
   }
   return config;
 };
+
