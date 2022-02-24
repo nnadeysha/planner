@@ -3,26 +3,19 @@
 
 <head>
   <meta charset="utf-8" />
-  <title>Webpack App</title>
-
+  <title>Planner</title>
 </head>
-
 <body>
   <main class="planner">
     <section class="planner__content">
-      <div class="table">
+      <div class="planner__header">
+        <button class="header__button button--back" id="backButton">Back</button>
+        <div id="monthDisplay">february</div>
+        <button class="header__button button--next" id="nextButton">Next</button>
       </div>
-      <div id="header">
-        <div id="monthDisplay"></div>
-        <div>
-          <button id="backButton">Back</button>
-          <button id="nextButton">Next</button>
-        </div>
-      </div>
-      
       <div id="container" class="container">
         <div id="users" class="users"></div>
-        <div class="date">
+        <div class="week">
           <div class="weekdays" id="weekdays">
             <div class="weekdays__item">Monday</div>
             <div class="weekdays__item">Tuesday</div>
@@ -32,12 +25,8 @@
             <div class="weekdays__item">Saturday</div>
             <div class="weekdays__item">Sunday</div>
           </div>
-            <div class="calendar" id="calendar"></div> 
+          <div class="calendar" id="calendar"></div>
         </div>
-        
-          
-        
-        
       </div>
       </div>
     </section>
