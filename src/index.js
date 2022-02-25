@@ -5,21 +5,21 @@ import { currentWeek, initButtons } from "./service/dateData";
 
 const app = document.querySelector(".planner");
 const users = document.getElementById("users");
-
-async function usersContent(){
-    const data = await getUserData();
-    console.log(data);
-    const arrUsers = data.map((user) => {
-        users.innerHTML += `
+const calendar = document.getElementById("container");
+async function usersContent() {
+  const data = await getUserData();
+  console.log(data);
+  const arrUsers = data.map((user) => {
+    users.innerHTML += `
                 <div class="users__item">
                             <h4 class="users__title" data-user-id= ${user.id}>${user.surname} ${user.firstName}</h4>
                         </div>
                 `;
-      });
-  
-      initButtons(arrUsers.length);
-      currentWeek(arrUsers.length); 
+  });
+
+  initButtons(arrUsers.length, calendar);
+  currentWeek(arrUsers.length,calendar);
 }
-usersContent()
+usersContent();
 
 //getTaskData(app);
