@@ -51,6 +51,9 @@ body {
   height: 70vh;
   grid-template-areas: "users Mon Tue Wed Thu Fri Sat Sun";
   overflow-y: scroll;
+  box-shadow: 0 0 10px 5px rgba(221, 221, 221, 1);
+  border-radius: 5px;
+  margin-top: 20px;
 }
 .users {
   grid-area: users;
