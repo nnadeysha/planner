@@ -6,7 +6,7 @@ export function currentWeek(usersLength, calendar) {
   const month = document.querySelector('.month');
   
   const weeks = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-  const months = []
+  
   function getStartOfWeek() {
     currentDate.setDate(currentDate.getDate() - currentDate.getDay() + 1);
     return Date.parse(currentDate);
@@ -25,6 +25,7 @@ export function currentWeek(usersLength, calendar) {
 
   const calendarElements = document.querySelectorAll(".calendar__item");
   calendarElements.forEach((el) => el.remove());
+  
   for (
     let i = getStartOfWeek();
     i <= getEndOfWeek();
@@ -49,7 +50,7 @@ export function currentWeek(usersLength, calendar) {
   Array.from(cells).map((cell) => {
     let i = 1;
     while (i <= usersLength) {
-      cell.innerHTML += `<p data-count=${i} class = 'cell cell--${i++}'></p>`;
+      cell.innerHTML += `<p data-count=${i} data-date=${cell.previousElementSibling.innerHTML} class = 'cell cell--${i++}'></p>`;
     }
 
     cell.setAttribute("data-date", `${cell.previousElementSibling.innerHTML}`);
