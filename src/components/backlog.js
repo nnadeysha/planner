@@ -115,9 +115,11 @@ function dragAndDrop(arrTask){
             let dateData = arrTask[cellNumber].planEndDate.replace(/-/gi, ".").slice(5, 10);
             let coverDate = dateData.slice(3, 5) + "." + dateData.slice(0, 2);
             
-            const dropZoneFromUser = document.querySelector(`[data-count="${cellNumber}"]`);
-            console.log(dropZoneFromUser)
-            dropZoneFromUser.appendChild(draggedItem);
+            const dropZoneFromUser = document.querySelector(`[data-date='${coverDate}']`);
+            
+           const a = dropZoneFromUser.querySelector(`[data-count='${cellNumber}']`);
+           
+            a.append(draggedItem);
        } 
          
       
@@ -126,7 +128,7 @@ function dragAndDrop(arrTask){
     
 }
 /*  
-
+[data-count='${cellNumber}']
     
     creationAuthor: 1
 creationDate: "2022-02-26"

@@ -50,9 +50,9 @@ export function currentWeek(usersLength, calendar, count) {
   Array.from(cells).map((cell) => {
     let i = 1;
     while (i <= usersLength) {
-      cell.innerHTML += `<p data-count=${i} data-date=${cell.previousElementSibling.innerHTML} class = 'cell cell--${i++} drop'></p>`;
+      cell.innerHTML += `<p data-count=${i} data-date=${cell.previousElementSibling.innerHTML} class = 'date-${cell.previousElementSibling.innerHTML} cell cell--${i++} drop'></p>`;
     }
-
+    //cell.classList.add(`date-${cell.previousElementSibling.innerHTML}`)
     cell.setAttribute("data-date", `${cell.previousElementSibling.innerHTML}`);
   });
 }
