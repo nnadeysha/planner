@@ -13,26 +13,29 @@ export const BacklogContent = async (arrUsers) => {
             </div>
             `;
     } else {
-        const cells = document.querySelectorAll('.cell');
-        for(let i = 0; i < arrUsers.length; i++){
-            if(arrUsers[i].id === task.executor){
-                arr.push(arrUsers[i].id);
-                let dateData = (task.planStartDate).replace(/-/gi, '.').slice(5, 10);
-                let coverDate = dateData.slice(3, 5)+'.'+dateData.slice(0, 2);
-                cells.forEach(el =>{ 
-                    if(el.getAttribute('data-date') === coverDate && arrUsers[i].id === task.executor){
-                        el.innerHTML += `true`
-                    }}
-                    )
-            } 
+      const cells = document.querySelectorAll(".cell");
+      let dateData = task.planEndDate.replace(/-/gi, ".").slice(5, 10);
+      let coverDate = dateData.slice(3, 5) + "." + dateData.slice(0, 2);
+      for (let i = 0; i < arrUsers.length; i++) {
+        if (arrUsers[i].id === task.executor) {
+          arr.push(arrUsers[i].id);
+          cells.forEach((el) => {
+            if (
+              el.getAttribute("data-date") === coverDate &&
+              +el.getAttribute("data-count") === arrUsers[i].id
+            ) {
+                const cellContent = document.createElement('div');
+                cellContent .classList.add('task__element');
+                el.appendChild(cellContent);
+                
+             cellContent.innerHTML += `<p class="task__description" data-tooltip="Start:${task.planStartDate} Deadline:${task.planEndDate}">${task.subject}</p>`;
+            }
+          });
         }
+      }
     }
-    
-    
-    
   });
-  console.log(arr)
-  
+  console.log(arr);
 };
 /*  
 cell.previousElementSibling.innerHTML data-date
