@@ -7,17 +7,22 @@
 </head>
 <body>
   <main class="planner">
-    <section class="planner__content">
-      <div class="planner__header">
+    <section class="planner__calendar">
+      <div class="calendar__header">
         <button class="header__button button--back" id="backButton">Back</button>
         <div class="month"></div>
         <button class="header__button button--next" id="nextButton">Next</button>
       </div>
-      <div id="container" class="container">
-         <div class="users" id="users"></div>
+      <div class="calendar__container">
+         <div class="users"></div>
       </div>
     </section>
-    <section class="planner__backlog"></section>
+    <section class="planner__backlog">
+      <div class="backlog__container">
+        <h3 class="backlog__title">Backlog</h3>
+        <div class="backlog__content"></div>
+      </div>
+    </section>
   </main>
 </body>
 

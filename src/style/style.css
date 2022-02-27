@@ -1,7 +1,6 @@
 * {
   box-sizing: border-box;
-  padding: 0px;
-  margin: 0px;
+  
   padding: 0;
   margin: 0;
 }
@@ -11,14 +10,17 @@ body {
   justify-content: center;
   background-color: #fffcff;
 }
-.planner__content {
+.planner {
+  display: flex;
+}
+.planner__calendar {
   max-width: 80vw;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.planner__header {
+.calendar__header {
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -45,12 +47,20 @@ body {
   background-color: #cba8a8;
 }
 
-.container {
+.calendar__container,
+.backlog__container {
+  height: 70vh;
+
+  overflow-y: scroll;
+  box-shadow: 0 0 10px 5px rgba(221, 221, 221, 1);
+  border-radius: 5px;
+}
+
+.calendar__container {
   display: grid;
   grid-template-columns: 2fr repeat(7, 1fr);
-  height: 70vh;
   grid-template-areas: "users Mon Tue Wed Thu Fri Sat Sun";
-  overflow-y: scroll;
+  margin-top: 20px;
 }
 .users {
   grid-area: users;
@@ -83,7 +93,7 @@ body {
   display: flex;
   justify-content: flex-end;
 }
-.weekdays__item:last-child{
+.weekdays__item:last-child {
   margin-right: 20px;
 }
 .week {
@@ -93,8 +103,9 @@ body {
   justify-content: flex-start;
 }
 
-.calendar__item {
-  width: 100px;
+.calendar__item, .backlog__title {
+  max-width: 200px;
+  width: 100%;
   text-align: center;
   color: #247ba0;
 }
@@ -114,16 +125,65 @@ body {
   display: flex;
   align-items: center;
   padding: 10px;
-  border: 1px solid #cbcbcc ;
+  border: 1px solid #cbcbcc;
   color: #f0eff0;
 }
 .cell {
   width: 100%;
   height: 100px;
-  border: 1px solid rgb(57%, 63%, 82%, 0.3);;
-  
+  border: 1px solid rgb(57%, 63%, 82%, 0.3);
+  position: relative;
 }
 
+/* Backlog */
+
+.backlog__title{
+ text-align: center;
+ height: 40px;
+ border: 1px solid #cbcbcc;
+ 
+}
+.backlog__container {
+  margin-top: 75px;
+  background-color: rgb(223, 211, 211);
+}
+.task__element{
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 50px;
+  border: 1px solid rgba(253, 254, 255, 1);
+  padding: 10px;
+}
+ [data-tooltip]::after {
+  content: attr(data-tooltip); 
+    position: absolute; 
+    width: 100%; 
+    left: 0; top: 0;
+    background: rgba(112, 122, 181, 0.6);
+    color: #fff;
+    padding: 0.5em;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  
+    opacity: 0;
+    transition: 1s;
+}
+[data-tooltip]:hover::after {
+  opacity: 1;
+  top: 1em;
+} 
+.task__description{
+  width: 100%;
+  height: 10px;
+}
+
+.hide{
+  display: none;
+}
+.hovered{
+  background-color: rgba(153, 155, 152, 0.3);
+}
 /* .day {
   width: 100px;
   padding: 10px;
