@@ -1,7 +1,7 @@
-let count = 0;
 
 
-export function currentWeek(usersLength, calendar) {
+
+export function currentWeek(usersLength, calendar, count) {
   const currentDate = new Date();
   const month = document.querySelector('.month');
   
@@ -50,7 +50,7 @@ export function currentWeek(usersLength, calendar) {
   Array.from(cells).map((cell) => {
     let i = 1;
     while (i <= usersLength) {
-      cell.innerHTML += `<p data-count=${i} data-date=${cell.previousElementSibling.innerHTML} class = 'cell cell--${i++}'></p>`;
+      cell.innerHTML += `<p data-count=${i} data-date=${cell.previousElementSibling.innerHTML} class = 'cell cell--${i++} drop'></p>`;
     }
 
     cell.setAttribute("data-date", `${cell.previousElementSibling.innerHTML}`);
@@ -59,14 +59,4 @@ export function currentWeek(usersLength, calendar) {
 
 
 
-export function initButtons(usersLength, calendar) {
-  document.getElementById("nextButton").addEventListener("click", () => {
-    count += 7;
-    currentWeek(usersLength, calendar);
-  });
 
-  document.getElementById("backButton").addEventListener("click", () => {
-    count -= 7;
-    currentWeek(usersLength, calendar);
-  });
-}
