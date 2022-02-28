@@ -2,9 +2,6 @@ import { getTaskData } from "../service/TaskData";
 import { dragAndDrop } from "./draganddrop";
 const backlog = document.querySelector(".backlog__content");
 
-const itemsLocalSt = !localStorage.getItem('items') ? 
-JSON.parse(localStorage.getItem('items')) : [];
-
 
 
 export const backlogContent = async (arrUsers) => {
@@ -13,13 +10,13 @@ export const backlogContent = async (arrUsers) => {
   data.map((task) => {
     arrTask.push(task);
   });
-  taskInCellCreate(arrTask, arrUsers, itemsLocalSt);
+  taskInCellCreate(arrTask, arrUsers);
   backlogCreate(arrTask)
   dragAndDrop(arrTask);
   document.querySelectorAll('.header__button').forEach(button =>{
     button.addEventListener('click', ()=>{
       dragAndDrop(arrTask);
-      taskInCellCreate(arrTask, arrUsers, itemsLocalSt);
+      taskInCellCreate(arrTask, arrUsers);
     })
 })
 };
@@ -55,13 +52,7 @@ function taskInCellCreate(arrTask, arrUsers, itemsLocalSt){
             el.appendChild(cellContent);
   
             cellContent.innerHTML += `<p class="task__description"   data-tooltip="Start:${task.planStartDate} Deadline:${task.planEndDate}">${task.subject}</p>`;
-            const item = {
-              date: el.getAttribute("data-date"),
-              position: el.getAttribute("data-count")
-            };
-            itemsLocalSt.push(item);
-            localStorage.setItem('items', JSON.stringify(itemsLocalSt))
-            console.log(itemsLocalSt);
+            
           }
   
           

@@ -1,3 +1,7 @@
+const itemsLocalSt = !localStorage.getItem('items') ? 
+JSON.parse(localStorage.getItem('items')) : [];
+
+
 export function dragAndDrop(arrTask) {
     const dragItems = document.querySelectorAll(".task__element");
     const dropZones = document.querySelectorAll(".cell");
@@ -22,7 +26,7 @@ export function dragAndDrop(arrTask) {
     dragItems.forEach((dragItem) => {
       dragItem.addEventListener("dragstart", dragStart);
       dragItem.addEventListener("dragend", dragEnd);
-      dragItem.addEventListener("drag", drag);
+      
       dragItem.addEventListener("dragenter", () => {
         if (draggedItem !== droppedItem) {
           droppedItem = dragItem;
@@ -55,9 +59,18 @@ export function dragAndDrop(arrTask) {
       this.classList.remove("hovered");
       droppedItem = this;
     }
-    function drag() {}
+    
     function dragDrop() {
       this.append(draggedItem);
+      console.log(this.getAttribute('data-date'), this.getAttribute('data-count'));
+      const item = {
+        date: this.getAttribute("data-date"),
+        position: this.getAttribute("data-count")
+      };
+      itemsLocalSt.push(item);
+      localStorage.setItem('items', JSON.stringify(itemsLocalSt))
+      console.log(itemsLocalSt); 
+      console.log(draggedItem)
       this.classList.remove("hovered");
     }
   
@@ -79,4 +92,4 @@ export function dragAndDrop(arrTask) {
       this.classList.remove("hovered");
     }
   }
-  
+ 
