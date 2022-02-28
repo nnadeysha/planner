@@ -1,0 +1,177 @@
+[
+  {
+    "id": 1,
+    "username": "user1",
+    "surname": "Потапенко",
+    "firstName": "Влад",
+    "secondName": ""
+  },
+  {
+    "id": 2,
+    "username": "user2",
+    "surname": "Васильев",
+    "firstName": "Александр",
+    "secondName": ""
+  },
+  {
+    "id": 3,
+    "username": "user3",
+    "surname": "Некрасов",
+    "firstName": "Борис",
+    "secondName": ""
+  },
+  {
+    "id": 4,
+    "username": "user4",
+    "surname": "Васильев",
+    "firstName": "Денис",
+    "secondName": ""
+  },
+  {
+    "id": 5,
+    "username": "user5",
+    "surname": "Быстров",
+    "firstName": "Антон",
+    "secondName": ""
+  },
+  {
+    "id": 6,
+    "username": "user6",
+    "surname": "Васильев",
+    "firstName": "Альберт",
+    "secondName": ""
+  },
+  {
+    "id": 7,
+    "username": "user7",
+    "surname": "Некрасов",
+    "firstName": "Александр",
+    "secondName": ""
+  },
+  {
+    "id": 8,
+    "username": "user8",
+    "surname": "Кожин",
+    "firstName": "Сергей",
+    "secondName": ""
+  },
+  {
+    "id": 9,
+    "username": "user9",
+    "surname": "Иванов",
+    "firstName": "Олег",
+    "secondName": ""
+  },
+  {
+    "id": 10,
+    "username": "user10",
+    "surname": "Потапенко",
+    "firstName": "Альберт",
+    "secondName": ""
+  },
+  {
+    "id": 11,
+    "username": "user11",
+    "surname": "Мозгов",
+    "firstName": "Олег",
+    "secondName": ""
+  },
+  {
+    "id": 12,
+    "username": "user12",
+    "surname": "Петров",
+    "firstName": "Евгений",
+    "secondName": ""
+  },
+  {
+    "id": 13,
+    "username": "user13",
+    "surname": "Петренко",
+    "firstName": "Евгений",
+    "secondName": ""
+  },
+  {
+    "id": 14,
+    "username": "user14",
+    "surname": "Васильев",
+    "firstName": "Антон",
+    "secondName": ""
+  },
+  {
+    "id": 15,
+    "username": "user15",
+    "surname": "Некрасов",
+    "firstName": "Григорий",
+    "secondName": ""
+  },
+  {
+    "id": 16,
+    "username": "user16",
+    "surname": "Быстров",
+    "firstName": "Денис",
+    "secondName": ""
+  },
+  {
+    "id": 17,
+    "username": "user17",
+    "surname": "Кожин",
+    "firstName": "Борис",
+    "secondName": ""
+  },
+  {
+    "id": 18,
+    "username": "user18",
+    "surname": "Быстров",
+    "firstName": "Иван",
+    "secondName": ""
+  },
+  {
+    "id": 19,
+    "username": "user19",
+    "surname": "Тонких",
+    "firstName": "Денис",
+    "secondName": ""
+  },
+  {
+    "id": 20,
+    "username": "user20",
+    "surname": "Кузнецов",
+    "firstName": "Денис",
+    "secondName": ""
+  },
+  {
+    "id": 21,
+    "username": "user21",
+    "surname": "Иванов",
+    "firstName": "Александр",
+    "secondName": ""
+  },
+  {
+    "id": 22,
+    "username": "user22",
+    "surname": "Быстров",
+    "firstName": "Денис",
+    "secondName": ""
+  },
+  {
+    "id": 23,
+    "username": "user23",
+    "surname": "Иванов",
+    "firstName": "Альберт",
+    "secondName": ""
+  },
+  {
+    "id": 24,
+    "username": "user24",
+    "surname": "Смагин",
+    "firstName": "Алексей",
+    "secondName": ""
+  },
+  {
+    "id": 25,
+    "username": "user25",
+    "surname": "Смагин",
+    "firstName": "Альберт",
+    "secondName": ""
+  }
+]

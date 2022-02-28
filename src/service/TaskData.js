@@ -1,11 +1,15 @@
-const API_USERS = `https://varankin_dev.elma365.ru/api/extensions/2a38760e-083a-4dd0-aebc-78b570bfd3c7/script/tasks`
-export const getTaskData = async (app) => {
-    let response = await fetch(
-        API_USERS
-    );
-    const content = await response.json();
-    return content;
-    
+import { API_TASKS } from "../constants/const";
+export const getTaskData = async () => {
+    try {
+        let response = await fetch(
+            API_TASKS
+        );
+        const content = await response.json();
+        return content;
+       
+      } catch (e) {
+        console.error(e);
+      }
   };
   
 
