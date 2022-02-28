@@ -1,7 +1,8 @@
 import { getUserData } from "./service/UserData";
 import "./style/style.css";
 import { currentWeek } from "./service/dateData";
-import { BacklogContent, dragAndDrop } from "./components/backlog";
+import { backlogContent} from "./components/backlog";
+
 let count = 0;
 const users = document.querySelector(".users");
 const calendar = document.querySelector(".calendar__container");
@@ -24,21 +25,23 @@ async function usersContent() {
   
   initButtons(arrUsers.length, calendar, count, arrUsers);
   currentWeek(arrUsers.length,calendar, count);
-  BacklogContent(arrUsers);
+  backlogContent(arrUsers);
 }
 
 usersContent();
 
-export function initButtons(usersLength, calendar) {
+export function initButtons(usersLength, calendar, arrUsers) {
   document.getElementById("nextButton").addEventListener("click", () => {
     count += 7;
     currentWeek(usersLength, calendar, count);
+    
     
   });
 
   document.getElementById("backButton").addEventListener("click", () => {
     count -= 7;
     currentWeek(usersLength, calendar, count);
+   
     
   });
 }
