@@ -14,7 +14,7 @@ export const BacklogContent = async (arrUsers) => {
             </div>
             `;
     } else {
-      let dateData = task.planEndDate.replace(/-/gi, ".").slice(5, 10);
+      let dateData = task.planStartDate.replace(/-/gi, ".").slice(5, 10);
       let coverDate = dateData.slice(3, 5) + "." + dateData.slice(0, 2);
 
       for (let i = 0; i < arrUsers.length; i++) {
@@ -109,17 +109,14 @@ function dragAndDrop(arrTask){
     
     function dragDropUser(event){
         const cellNumber = this.getAttribute("data-user-id");
-        const dragFlag = event.dataTransfer.getData("dragItem");
+        
         
         for (let i = 0; i < arrTask.length; i++){
-            let dateData = arrTask[cellNumber].planEndDate.replace(/-/gi, ".").slice(5, 10);
+            let dateData = arrTask[cellNumber].planStartDate.replace(/-/gi, ".").slice(5, 10);
             let coverDate = dateData.slice(3, 5) + "." + dateData.slice(0, 2);
             
-            const dropZoneFromUser = document.querySelector(`[data-date='${coverDate}']`);
-            
-           const a = dropZoneFromUser.querySelector(`[data-count='${cellNumber}']`);
-           
-            a.append(draggedItem);
+            const dropZoneFromUser = document.querySelector(`[data-date='${coverDate}']`).querySelector(`[data-count='${cellNumber}']`);
+            dropZoneFromUser.append(draggedItem);
        } 
          
       
