@@ -4,9 +4,13 @@
   padding: 0;
   margin: 0;
 }
+.overflow-scroll{
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
 body {
   display: flex;
-  margin-top: 50px;
+  padding-top: 50px;
   justify-content: center;
   background-color: #fffcff;
 }
@@ -112,7 +116,7 @@ body {
 .users {
   display: flex;
   flex-direction: column;
-  max-width: 200px;
+  
   width: 100%;
   justify-content: space-between;
   margin-top: 37px;
@@ -133,6 +137,7 @@ body {
   height: 100px;
   border: 1px solid rgb(57%, 63%, 82%, 0.3);
   position: relative;
+  
 }
 
 
@@ -145,6 +150,9 @@ body {
 }
 .backlog__container {
   margin-top: 75px;
+  max-width: 200px;
+  width: 100%;
+  overflow-x: hidden;
   background-color: rgb(223, 211, 211);
 }
 .task__element{
@@ -183,4 +191,9 @@ body {
 }
 .hovered{
   background-color: rgba(153, 155, 152, 0.3);
+}
+@media screen and (max-width: 479px){
+  .planner__backlog{
+    display: none;
+  }
 }

@@ -2,42 +2,40 @@ import { getTaskData } from "../service/TaskData";
 import { dragAndDrop } from "./draganddrop";
 const backlog = document.querySelector(".backlog__content");
 
-
-
 export const backlogContent = async (arrUsers) => {
+  const cells = document.querySelectorAll(".cell");
   const data = await getTaskData();
   const arrTask = [];
   data.map((task) => {
     arrTask.push(task);
   });
   taskInCellCreate(arrTask, arrUsers);
-  backlogCreate(arrTask)
+  backlogCreate(arrTask);
   dragAndDrop(arrTask);
-  document.querySelectorAll('.header__button').forEach(button =>{
-    button.addEventListener('click', ()=>{
+  document.querySelectorAll(".header__button").forEach((button) => {
+    button.addEventListener("click", () => {
       taskInCellCreate(arrTask, arrUsers);
       dragAndDrop(arrTask);
-    })
-})
+    });
+  });
+ 
 };
 
-function backlogCreate(arrTask){
-  arrTask.map((task) =>{
+function backlogCreate(arrTask) {
+  arrTask.map((task) => {
     if (task.executor === null) {
       backlog.innerHTML += `
             <div class="task__element" draggable="true" data-id="${task.id}">
                 <p class="task__description"  data-tooltip="Start:${task.planStartDate} Deadline:${task.planEndDate}">Task:${task.subject}</p>
             </div>
             `;
-    } 
-  })
-  
+    }
+  });
 }
-function taskInCellCreate(arrTask, arrUsers){
-  
+function taskInCellCreate(arrTask, arrUsers) {
   const cells = document.querySelectorAll(".cell");
-  arrTask.map((task) =>{
-    if (task.executor !== null){
+  arrTask.map((task) => {
+    if (task.executor !== null) {
       for (let i = 0; i < arrUsers.length; i++) {
         if (arrUsers[i].id === task.executor) {
           let dateData = task.planStartDate.replace(/-/gi, ".").slice(5, 10);
@@ -52,19 +50,12 @@ function taskInCellCreate(arrTask, arrUsers){
               cellContent.setAttribute("data-id", `${task.id}`);
               cellContent.classList.add("task__element");
               el.appendChild(cellContent);
-    
+
               cellContent.innerHTML += `<p class="task__description"   data-tooltip="Start:${task.planStartDate} Deadline:${task.planEndDate}">${task.subject}</p>`;
-              
             }
-    
-            
           });
         }
       }
     }
-    
-  })
-  
+  });
 }
-
-
