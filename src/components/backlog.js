@@ -16,8 +16,14 @@ export const backlogContent = async (arrUsers) => {
   taskInCellCreate(arrTask, arrUsers);
   backlogCreate(arrTask);
   dragAndDrop(arrTask);
+
   document.querySelectorAll(".header__button").forEach((button) => {
     button.addEventListener("click", () => {
+      document.querySelectorAll(".cell").forEach(cell=>{
+        if(cell.getAttribute("data-date") === currentDay ){
+          cell.classList.add("today")
+        }
+      })
       taskInCellCreate(arrTask, arrUsers);
       dragAndDrop(arrTask);
     });
@@ -27,7 +33,10 @@ export const backlogContent = async (arrUsers) => {
       cell.classList.add("today")
     }
   })
+  
 };
+
+
 
 function backlogCreate(arrTask) {
   arrTask.map((task) => {
