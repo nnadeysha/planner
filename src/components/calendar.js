@@ -3,7 +3,7 @@
 
 export function currentWeek(usersLength, calendar, count) {
   const currentDate = new Date();
-  const month = document.querySelector('.month');
+  const month = document.querySelector('.js-month');
   const calendarElements = document.querySelectorAll(".calendar__item");
   
   
@@ -57,7 +57,7 @@ export function currentWeek(usersLength, calendar, count) {
     while (i <= usersLength) {
       cell.innerHTML += `<p data-count=${i} data-date=${cell.previousElementSibling.innerHTML} class = 'date-${cell.previousElementSibling.innerHTML} cell cell--${i++} drop'></p>`;
     }
-    //cell.classList.add(`date-${cell.previousElementSibling.innerHTML}`)
+    
     cell.setAttribute("data-date", `${cell.previousElementSibling.innerHTML}`);
   });
   
