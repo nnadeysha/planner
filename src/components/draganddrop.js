@@ -59,6 +59,7 @@ export function dragAndDrop(arrTask) {
       event.preventDefault();
       this.classList.add("hovered");
       droppedItem = this;
+    
       if(this.childNodes.length <= maxCountOfChildren){
         this.classList.remove('overflow-scroll')
       }
@@ -85,17 +86,13 @@ export function dragAndDrop(arrTask) {
       };
       itemsLocalSt.push(item);
       localStorage.setItem('items', JSON.stringify(itemsLocalSt))
-      console.log(itemsLocalSt); 
-      console.log(draggedItem)
       
-      dropZones.forEach(el =>{
-        el.classList.remove("hovered")
-      })
+      this.classList.remove('hovered')
     }
   
     function dragDropUser(event) {
       const cellNumber = this.getAttribute("data-user-id");
-  
+      const arrDropZones = [];
       for (let i = 0; i < arrTask.length; i++) {
         let dateData = arrTask[cellNumber].planStartDate
           .replace(/-/gi, ".")
@@ -109,7 +106,19 @@ export function dragAndDrop(arrTask) {
         if(dropZoneFromUser.childNodes.length > maxCountOfChildren){
           dropZoneFromUser.classList.add('overflow-scroll')
         }
+        this.classList.remove('hovered')
+        arrDropZones.push(dropZoneFromUser);
+      }
+      for(let j = 0; j <arrDropZones.length - 24; j++){
+        console.log(arrDropZones[j].getAttribute('data-date'), arrDropZones[j].getAttribute('data-count'));
+      const item = {
+        date: arrDropZones[j].getAttribute("data-date"),
+        position: arrDropZones[j].getAttribute("data-count")
+      };
+      itemsLocalSt.push(item);
+      localStorage.setItem('items', JSON.stringify(itemsLocalSt))
       }
     }
+    
   }
  
