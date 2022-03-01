@@ -107,6 +107,16 @@ export function dragAndDrop(arrTask) {
           dropZoneFromUser.classList.add('overflow-scroll')
         }
         this.classList.remove('hovered')
+        arrDropZones.push(dropZoneFromUser);
+      }
+      for(let j = 0; j <arrDropZones.length - 24; j++){
+        console.log(arrDropZones[j].getAttribute('data-date'), arrDropZones[j].getAttribute('data-count'));
+      const item = {
+        date: arrDropZones[j].getAttribute("data-date"),
+        position: arrDropZones[j].getAttribute("data-count")
+      };
+      itemsLocalSt.push(item);
+      localStorage.setItem('items', JSON.stringify(itemsLocalSt))
       }
     }
     
