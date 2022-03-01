@@ -1,6 +1,7 @@
 const itemsLocalSt = !localStorage.getItem('items') ? 
 JSON.parse(localStorage.getItem('items')) : [];
 
+let maxCountOfChildren = 2;
 
 export function dragAndDrop(arrTask) {
     const dragItems = document.querySelectorAll(".task__element");
@@ -41,6 +42,7 @@ export function dragAndDrop(arrTask) {
       draggedItem = this;
       setTimeout(() => {
         this.classList.add("hide");
+        
       }, 0);
     }
     function dragEnd() {
@@ -49,19 +51,33 @@ export function dragAndDrop(arrTask) {
     }
     function dragOver(event) {
       event.preventDefault();
+      if(this.childNodes.length <= maxCountOfChildren){
+        this.classList.remove('overflow-scroll')
+      }
     }
     function dragEnter(event) {
       event.preventDefault();
       this.classList.add("hovered");
       droppedItem = this;
+      if(this.childNodes.length <= maxCountOfChildren){
+        this.classList.remove('overflow-scroll')
+      }
     }
     function dragLeave() {
       this.classList.remove("hovered");
       droppedItem = this;
+      if(this.childNodes.length <= maxCountOfChildren){
+        this.classList.remove('overflow-scroll')
+      }
     }
     
     function dragDrop() {
       this.append(draggedItem);
+      
+        if(this.childNodes.length > maxCountOfChildren){
+          this.classList.add('overflow-scroll')
+        }
+      
       console.log(this.getAttribute('data-date'), this.getAttribute('data-count'));
       const item = {
         date: this.getAttribute("data-date"),
@@ -71,7 +87,10 @@ export function dragAndDrop(arrTask) {
       localStorage.setItem('items', JSON.stringify(itemsLocalSt))
       console.log(itemsLocalSt); 
       console.log(draggedItem)
-      this.classList.remove("hovered");
+      
+      dropZones.forEach(el =>{
+        el.classList.remove("hovered")
+      })
     }
   
     function dragDropUser(event) {
@@ -87,9 +106,10 @@ export function dragAndDrop(arrTask) {
           .querySelector(`[data-date='${coverDate}']`)
           .querySelector(`[data-count='${cellNumber}']`);
         dropZoneFromUser.append(draggedItem);
+        if(dropZoneFromUser.childNodes.length > maxCountOfChildren){
+          dropZoneFromUser.classList.add('overflow-scroll')
+        }
       }
-  
-      this.classList.remove("hovered");
     }
   }
  
