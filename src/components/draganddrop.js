@@ -87,7 +87,10 @@ export function dragAndDrop(arrTask) {
       localStorage.setItem('items', JSON.stringify(itemsLocalSt))
       console.log(itemsLocalSt); 
       console.log(draggedItem)
-      this.classList.remove("hovered");
+      
+      dropZones.forEach(el =>{
+        el.classList.remove("hovered")
+      })
     }
   
     function dragDropUser(event) {
@@ -107,9 +110,6 @@ export function dragAndDrop(arrTask) {
           dropZoneFromUser.classList.add('overflow-scroll')
         }
       }
-      
-    
-      this.classList.remove("hovered");
     }
   }
  

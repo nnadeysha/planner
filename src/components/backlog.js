@@ -6,6 +6,10 @@ export const backlogContent = async (arrUsers) => {
   const cells = document.querySelectorAll(".cell");
   const data = await getTaskData();
   const arrTask = [];
+  const currentDate = new Date();
+  const currentDay = currentDate.toLocaleDateString()
+  .slice(0, 5);
+  console.log(currentDay);
   data.map((task) => {
     arrTask.push(task);
   });
@@ -18,7 +22,11 @@ export const backlogContent = async (arrUsers) => {
       dragAndDrop(arrTask);
     });
   });
- 
+  cells.forEach(cell=>{
+    if(cell.getAttribute("data-date") === currentDay ){
+      cell.classList.add("today")
+    }
+  })
 };
 
 function backlogCreate(arrTask) {
@@ -26,7 +34,7 @@ function backlogCreate(arrTask) {
     if (task.executor === null) {
       backlog.innerHTML += `
             <div class="task__element" draggable="true" data-id="${task.id}">
-                <p class="task__description"  data-tooltip="Start:${task.planStartDate} Deadline:${task.planEndDate}">Task:${task.subject}</p>
+                <p class="task__description"  data-tooltip="Start:${task.planStartDate} Deadline:${task.planEndDate}">${task.subject}</p>
             </div>
             `;
     }
