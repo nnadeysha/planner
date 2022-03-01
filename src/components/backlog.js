@@ -1,6 +1,6 @@
 import { getTaskData } from "../service/TaskData";
 import { dragAndDrop } from "./draganddrop";
-const backlog = document.querySelector(".backlog__content");
+const backlog = document.querySelector(".js-backlog__content");
 
 export const backlogContent = async (arrUsers) => {
   const cells = document.querySelectorAll(".cell");
@@ -17,7 +17,7 @@ export const backlogContent = async (arrUsers) => {
   backlogCreate(arrTask);
   dragAndDrop(arrTask);
 
-  document.querySelectorAll(".header__button").forEach((button) => {
+  document.querySelectorAll(".js-header__button").forEach((button) => {
     button.addEventListener("click", () => {
       document.querySelectorAll(".cell").forEach(cell=>{
         if(cell.getAttribute("data-date") === currentDay ){
@@ -36,8 +36,6 @@ export const backlogContent = async (arrUsers) => {
   
 };
 
-
-
 function backlogCreate(arrTask) {
   arrTask.map((task) => {
     if (task.executor === null) {
@@ -49,6 +47,7 @@ function backlogCreate(arrTask) {
     }
   });
 }
+
 function taskInCellCreate(arrTask, arrUsers) {
   const cells = document.querySelectorAll(".cell");
   arrTask.map((task) => {
