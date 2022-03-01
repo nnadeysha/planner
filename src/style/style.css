@@ -98,6 +98,17 @@ body {
   display: flex;
   justify-content: flex-end;
 }
+.weekdays__item, .calendar__date{
+  position: fixed;
+  height: 20px;
+}
+.calendar__date{
+  margin-top: 20px;
+  
+}
+.calendar__user-fields{
+  margin-top: 38px;
+}
 .weekdays__item:last-child {
   margin-right: 20px;
 }
