@@ -1,9 +1,8 @@
-const itemsLocalSt = !localStorage.getItem('items') ? 
-JSON.parse(localStorage.getItem('items')) : [];
+
 
 let maxCountOfChildren = 2;
 
-export function dragAndDrop(arrTask) {
+export function dragAndDrop(arrTask, itemsLocalSt) {
     const dragItems = document.querySelectorAll(".task__element");
     const dropZones = document.querySelectorAll(".cell");
     const dropUsers = document.querySelectorAll(".users__item");
@@ -72,17 +71,18 @@ export function dragAndDrop(arrTask) {
       }
     }
     
-    function dragDrop() {
+    function dragDrop(event) {
+      const draggetItemID = event.dataTransfer.getData("dragItem");
       this.append(draggedItem);
       
         if(this.childNodes.length > maxCountOfChildren){
           this.classList.add('overflow-scroll')
         }
       
-      console.log(this.getAttribute('data-date'), this.getAttribute('data-count'));
       const item = {
         date: this.getAttribute("data-date"),
-        position: this.getAttribute("data-count")
+        position: this.getAttribute("data-count"),
+        taskID: draggetItemID
       };
       itemsLocalSt.push(item);
       localStorage.setItem('items', JSON.stringify(itemsLocalSt))
@@ -91,6 +91,7 @@ export function dragAndDrop(arrTask) {
     }
   
     function dragDropUser(event) {
+      const draggetItemID = event.dataTransfer.getData("dragItem");
       const cellNumber = this.getAttribute("data-user-id");
       const arrDropZones = [];
       for (let i = 0; i < arrTask.length; i++) {
@@ -110,10 +111,10 @@ export function dragAndDrop(arrTask) {
         arrDropZones.push(dropZoneFromUser);
       }
       for(let j = 0; j <arrDropZones.length - 24; j++){
-        console.log(arrDropZones[j].getAttribute('data-date'), arrDropZones[j].getAttribute('data-count'));
       const item = {
         date: arrDropZones[j].getAttribute("data-date"),
-        position: arrDropZones[j].getAttribute("data-count")
+        position: arrDropZones[j].getAttribute("data-count"),
+        taskID: draggetItemID
       };
       itemsLocalSt.push(item);
       localStorage.setItem('items', JSON.stringify(itemsLocalSt))

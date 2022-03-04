@@ -2,38 +2,40 @@ import { getTaskData } from "../service/TaskData";
 import { dragAndDrop } from "./draganddrop";
 const backlog = document.querySelector(".js-backlog__content");
 
+export const itemsLocalSt = localStorage.getItem("items")
+  ? JSON.parse(localStorage.getItem("items"))
+  : [];
+
 export const backlogContent = async (arrUsers) => {
   const cells = document.querySelectorAll(".cell");
   const data = await getTaskData();
   const arrTask = [];
   const currentDate = new Date();
-  const currentDay = currentDate.toLocaleDateString()
-  .slice(0, 5);
-  console.log(currentDay);
+  const currentDay = currentDate.toLocaleDateString().slice(0, 5);
   data.map((task) => {
     arrTask.push(task);
   });
   taskInCellCreate(arrTask, arrUsers);
   backlogCreate(arrTask);
-  dragAndDrop(arrTask);
+  dragAndDrop(arrTask, itemsLocalSt);
 
   document.querySelectorAll(".js-header__button").forEach((button) => {
     button.addEventListener("click", () => {
-      document.querySelectorAll(".cell").forEach(cell=>{
-        if(cell.getAttribute("data-date") === currentDay ){
-          cell.classList.add("today")
+      getLocalStorageData(itemsLocalSt);
+      document.querySelectorAll(".cell").forEach((cell) => {
+        if (cell.getAttribute("data-date") === currentDay) {
+          cell.classList.add("today");
         }
-      })
+      });
       taskInCellCreate(arrTask, arrUsers);
-      dragAndDrop(arrTask);
+      dragAndDrop(arrTask, itemsLocalSt);
     });
   });
-  cells.forEach(cell=>{
-    if(cell.getAttribute("data-date") === currentDay ){
-      cell.classList.add("today")
+  cells.forEach((cell) => {
+    if (cell.getAttribute("data-date") === currentDay) {
+      cell.classList.add("today");
     }
-  })
-  
+  });
 };
 
 function backlogCreate(arrTask) {
@@ -46,6 +48,26 @@ function backlogCreate(arrTask) {
             `;
     }
   });
+}
+
+function getLocalStorageData(itemsLocalSt) {
+  for (let i = 0; i < itemsLocalSt.length; i++) {
+    document.querySelectorAll(".cell").forEach((cell) => {
+      const cellContent = document.createElement("div");
+      cellContent.setAttribute("draggable", "true");
+      cellContent.setAttribute("data-id", `${itemsLocalSt[i].position}`);
+      cellContent.classList.add("task__element");
+      if (
+        itemsLocalSt[i].date === cell.getAttribute("data-date") &&
+        +itemsLocalSt[i].position === +cell.getAttribute("data-count")
+      ) {
+        cell.append(cellContent);
+        cellContent.innerHTML += `<p class="task__description"  data-tooltip="Start:${itemsLocalSt[i].date} Deadline:${itemsLocalSt[i].position}">${itemsLocalSt[i].taskID}</p>`;
+  
+  
+      }
+    });
+  }
 }
 
 function taskInCellCreate(arrTask, arrUsers) {
